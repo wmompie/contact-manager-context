@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import Contact from './Contact';
 
 class Contacts extends Component {
+  state = {
+    contacts: [
+      {
+        id: 1,
+        name: 'John Doe',
+        email: 'jdoe@gmail.com',
+        phone: '555-555-5555',
+      },
+      {
+        id: 2,
+        name: 'Karen Williams',
+        email: 'karen@gmail.com',
+        phone: '777-777-7777',
+      },
+      {
+        id: 3,
+        name: 'Henry Johnson',
+        email: 'henry@gmail.com',
+        phone: '111-111-1111',
+      },
+    ],
+  };
+
   render() {
-    const { name, email, phone } = this.props;
+    const { contacts } = this.state;
     return (
-      <div className='card card-body mb-3'>
-        <h1>{name}</h1>
-        <ul className='list-group'>
-          <li className='list-group-item'>Email: {email}</li>
-          <li className='list-group-item'>Phone: {phone}</li>
-        </ul>
-      </div>
+      <React.Fragment>
+        {contacts.map(contact => (
+          <Contact key={contact.id} contact={contact} />
+        ))}
+      </React.Fragment>
     );
   }
 }
-
-Contacts.propTypes = {
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
-};
 
 export default Contacts;
